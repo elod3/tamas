@@ -340,7 +340,7 @@ body.ready .loader { transform: translateY(-101%); }
 .jersey svg { width: 100%; max-width: 520px; display: block; margin: 0 auto; filter: drop-shadow(0 24px 30px rgba(5,14,40,.25)); }
 .chest-slot { fill: rgba(255,255,255,.08); stroke: rgba(255,255,255,.55); stroke-width: 1.5; stroke-dasharray: 5 5; transition: opacity .3s; }
 .jersey.filled .chest-slot { opacity: 0; }
-.chest { fill: #fff; font-weight: 900; font-stretch: 62%; font-size: 46px; letter-spacing: .01em; }
+.chest { fill: #fff; font-weight: 900; font-stretch: 62%; letter-spacing: .01em; }
 .chest.pop { animation: pop .45s var(--ease); }
 @keyframes pop { 0% { transform: translateY(4px); opacity: .4; } 100% { transform: none; opacity: 1; } }
 .sleeve { fill: #fff; font-weight: 800; font-stretch: 75%; font-size: 12px; letter-spacing: .1em; }
