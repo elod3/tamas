@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tamás Koréh · ciclism U15</title>
-<meta name="description" content="Tamás pedalează serios de cinci ani: șosea, MTB, pistă. Ajută-l să ajungă la următoarea linie de start.">
+<meta name="description" content="Sunt Tamás Koréh, ciclist U15: șosea, MTB, pistă. Caut firme care să vină cu mine la start.">
 <meta name="robots" content="noindex">
 <link rel="preload" href="assets/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body class="loading">
 <script>document.body.classList.add('js')</script>
@@ -22,6 +22,7 @@
 
 <header class="top">
   <span class="mark">TK<b>212</b></span>
+  <a class="for-co" href="#sponsori" data-i18n="forCo">Pentru firme</a>
   <nav class="langs" aria-label="Limba">
     <button data-lang="ro" aria-pressed="true">RO</button>
     <button data-lang="hu" aria-pressed="false">HU</button>
@@ -34,8 +35,8 @@
     <div class="hero-text">
       <p class="cat" data-i18n="cat">U15 · șosea · MTB · pistă</p>
       <h1 class="name"><span data-i18n="first">Tamás</span> <span data-i18n="last">Koréh</span></h1>
-      <p class="lede" data-i18n="lede">Pedalează serios de cinci ani. În decembrie a concurat pe velodrom, în Bulgaria.</p>
-      <p class="ask" data-i18n="ask">Ajută-l să ajungă la următoarea linie de start.</p>
+      <p class="lede" data-i18n="lede">Pedalez serios de cinci ani. În decembrie am concurat pe velodrom, în Bulgaria.</p>
+      <p class="ask" data-i18n="ask">Caut firme care să vină cu mine la start.</p>
     </div>
 
     <figure class="hero-photo">
@@ -71,7 +72,7 @@
         <input type="number" id="other" min="10" step="10" inputmode="numeric" placeholder="lei">
       </label>
 
-      <button type="submit" class="go" id="go">Donează 100 lei</button>
+      <button type="submit" class="go" id="go">Susține-mă cu 100 lei</button>
 
       <details class="bank">
         <summary data-i18n="bank">Sau prin transfer bancar</summary>
@@ -83,7 +84,7 @@
   </section>
 
   <section class="kinds">
-    <h2 data-i18n="kindsTitle">Face de toate</h2>
+    <h2 data-i18n="kindsTitle">Fac de toate</h2>
     <figure class="k road">
       <img src="assets/img/road.webp" width="1600" height="1068" loading="lazy" alt="Pluton la o cursă de șosea" data-i18n-alt="roadAlt">
       <figcaption><b>01</b> <span data-i18n="road">Șosea</span></figcaption>
@@ -101,7 +102,7 @@
   <section class="podiums">
     <div class="pod-head">
       <h2 data-i18n="podTitle">Din telefonul lui tata</h2>
-      <p data-i18n="podSub">Podiumuri, pe rând.</p>
+      <p data-i18n="podSub">Podiumurile mele, pe rând.</p>
     </div>
     <div class="wall" id="wall"></div>
   </section>
@@ -109,7 +110,6 @@
   <section class="sponsors" id="sponsori">
     <div class="sp-text">
       <h2 data-i18n="spTitle">Firma ta, pe tricoul meu</h2>
-      <p class="sp-voice" data-i18n="spHi">Sunt Tamás.</p>
       <p class="sp-voice" data-i18n="spWhy">Tricoul meu stă pe podium, în poze și în clasamente.</p>
       <p class="sp-voice" data-i18n="spFree">Locul de pe piept încă e liber.</p>
 
@@ -118,7 +118,6 @@
         <input id="sp-name" type="text" maxlength="22" autocomplete="organization" placeholder="Firma ta">
       </label>
       <a class="go sp-go" id="sp-go" href="#" data-i18n="spBtn">Vreau locul ăsta</a>
-      <p class="sp-note" data-i18n="spNote">Mâneca stângă e deja a fratelui meu.</p>
     </div>
 
     <figure class="jersey" aria-hidden="true">
@@ -138,19 +137,18 @@
         <line x1="200" y1="52" x2="200" y2="404" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-dasharray="2 3"/>
         <rect class="chest-slot" x="112" y="160" width="176" height="74" rx="4"/>
         <text id="chest" class="chest" x="200" y="210" text-anchor="middle">FIRMA TA</text>
-        <text class="sleeve" x="326" y="92" text-anchor="middle" transform="rotate(54 326 92)" data-i18n="spTaken">REZERVAT</text>
       </svg>
     </figure>
   </section>
 
   <section class="again">
-    <p class="again-line" data-i18n="again">Fiecare cursă începe cu o taxă de înscriere și un drum.</p>
-    <a class="go go-line" href="#bib" data-i18n="againBtn">Pune-l la start</a>
+    <p class="again-line" data-i18n="again">Fiecare cursă a mea începe cu o taxă de înscriere și un drum.</p>
+    <a class="go go-line" href="#bib" data-i18n="againBtn">Pune-mă la start</a>
   </section>
 </main>
 
 <footer class="foot">
-  <p data-i18n="made">Pagină făcută de fratele lui.</p>
+  <p data-i18n="made">Pagină făcută de fratele meu.</p>
   <p data-i18n="credit">Fotografii de curse: Linia20 și familia.</p>
 </footer>
 
@@ -163,6 +161,6 @@
   </symbol>
 </svg>
 
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

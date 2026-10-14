@@ -11,10 +11,12 @@ Ca s-o vezi local: `python3 -m http.server` în folderul ăsta, apoi deschizi ht
 
 - Ce cumpără fiecare sumă (în `app.js`, la `buys`): 50 lei = o taxă de înscriere,
   100 = plinul până la cursă, 250 = o pereche de cauciucuri, 500 = un weekend de concurs.
-- „În decembrie a concurat pe velodrom, în Bulgaria”: e scris din ce a povestit Előd, mai
+- „În decembrie am concurat pe velodrom, în Bulgaria”: e scris din ce a povestit Előd, mai
   trebuie verificat.
 - Numărul 212 e cel cu care apare în clasamentul U15 de pe cronometraj.ro (locul 3).
 - Dacă tricoul tricolor de pe podiumul de la velodrom e de campion național, merită spus pe pagină.
+
+Toată pagina e scrisă la persoana întâi, cu vocea lui Tamás, pentru sponsori. Secțiunea „Firma ta, pe tricoul meu” scrie live numele firmei pe pieptul tricoului.
 
 ## Plata
 
