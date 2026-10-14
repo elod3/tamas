@@ -40,6 +40,11 @@ const T = {
     heroAlt: 'Tamás înainte de start, cu casca pe cap',
     roadAlt: 'Pluton la o cursă de șosea', mtbAlt: 'Coborâre pe pământ la o cursă de MTB',
     trackAlt: 'Tamás în tricoul albastru, pe bicicleta de cursă', podAlt: 'Podium',
+    spTitle: 'Firma ta, pe tricoul meu', spHi: 'Sunt Tamás.',
+    spWhy: 'Tricoul meu stă pe podium, în poze și în clasamente.',
+    spFree: 'Locul de pe piept încă e liber.', spType: 'Scrie numele firmei', spPh: 'Firma ta',
+    spBtn: 'Vreau locul ăsta', spNote: 'Mâneca stângă e deja a fratelui meu.', spTaken: 'REZERVAT',
+    spMail: 'Vreau locul de pe tricoul lui Tamás',
     title: 'Tamás Koréh · ciclism U15',
   },
   hu: {
@@ -65,6 +70,11 @@ const T = {
     heroAlt: 'Tamás a rajt előtt, sisakban',
     roadAlt: 'Mezőny egy országúti versenyen', mtbAlt: 'Lejtmenet egy MTB-versenyen',
     trackAlt: 'Tamás kék mezben, versenykerékpáron', podAlt: 'Dobogó',
+    spTitle: 'A céged, a mezemen', spHi: 'Tamás vagyok.',
+    spWhy: 'A mezem ott van a dobogón, a fotókon és az eredménylistákon.',
+    spFree: 'A mellkasomon még szabad a hely.', spType: 'Írd be a céged nevét', spPh: 'A céged',
+    spBtn: 'Ezt a helyet kérem', spNote: 'A bal ujj már a bátyámé.', spTaken: 'FOGLALT',
+    spMail: 'Szeretném a helyet Tamás mezén',
     title: 'Koréh Tamás · kerékpár U15',
   },
   en: {
@@ -90,6 +100,11 @@ const T = {
     heroAlt: 'Tamás before the start, helmet on',
     roadAlt: 'The bunch in a road race', mtbAlt: 'A dirt descent in an MTB race',
     trackAlt: 'Tamás in the blue jersey, on his race bike', podAlt: 'Podium',
+    spTitle: 'Your company, on my jersey', spHi: "I'm Tamás.",
+    spWhy: 'My jersey is on the podium, in the photos and in the results.',
+    spFree: 'The spot on my chest is still free.', spType: 'Type your company name', spPh: 'Your company',
+    spBtn: 'I want this spot', spNote: 'The left sleeve already belongs to my brother.', spTaken: 'TAKEN',
+    spMail: "I want the spot on Tamás's jersey",
     title: 'Tamás Koréh · U15 cycling',
   },
 };
@@ -122,6 +137,8 @@ function setLang(l) {
   document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.alt = t[el.dataset.i18nAlt]; });
   document.querySelectorAll('#wall img').forEach(el => { el.alt = t.podAlt; });
   document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  $('#sp-name').placeholder = t.spPh;
+  chest();
   bankData();
   paint();
   store('lang', l);
@@ -167,6 +184,61 @@ if (CONFIG.sponsorEmail) sponsor.href = `mailto:${CONFIG.sponsorEmail}?subject=S
 
 $('#wall').innerHTML = PODIUMS.map(([n, cls = '']) =>
   `<img class="${cls}" src="assets/img/pod${String(n).padStart(2, '0')}.webp" loading="lazy" alt="">`).join('');
+
+// ---------- jersey: the sponsor sees their name on his chest ----------
+const spName = $('#sp-name'), chestEl = $('#chest'), jersey = $('.jersey');
+function chest() {
+  const v = spName.value.trim().toUpperCase();
+  const label = v || T[lang].spPh.toUpperCase();
+  chestEl.textContent = label;
+  chestEl.setAttribute('font-size', Math.round(Math.min(46, 300 / Math.max(label.length, 4) * 1.6)));
+  jersey.classList.toggle('filled', !!v);
+  const mail = CONFIG.sponsorEmail;
+  const subj = encodeURIComponent(T[lang].spMail + (v ? ` · ${spName.value.trim()}` : ''));
+  $('#sp-go').href = mail ? `mailto:${mail}?subject=${subj}` : '#sponsori';
+}
+spName.addEventListener('input', () => {
+  chest();
+  chestEl.classList.remove('pop'); void chestEl.getBBox(); chestEl.classList.add('pop');
+});
+
+// ---------- quiet entrances ----------
+document.querySelectorAll('.kinds h2, .k, .pod-head, .wall, .sp-text, .jersey, .again-line').forEach(el => el.classList.add('rv'));
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { rootMargin: '0px 0px -12% 0px' }) : null;
+document.querySelectorAll('.rv').forEach((el, i) => {
+  if (el.classList.contains('k')) el.style.transitionDelay = (i % 3) * 0.08 + 's';
+  io ? io.observe(el) : el.classList.add('in');
+});
+
+// ---------- loader: start clock runs until the photos are in ----------
+(function loader() {
+  const clock = $('#ld-clock'), bar = $('#ld-bar');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still = new URLSearchParams(location.search).has('still');
+  if (reduce || still) { document.body.classList.add('ready', 'no-loader'); document.querySelectorAll('.rv').forEach(el => el.classList.add('in')); return; }
+  const t0 = performance.now();
+  const imgs = [...document.querySelectorAll('.hero img')];
+  let done = 0;
+  const step = () => { bar.style.transform = `scaleX(${Math.min(1, (done + 1) / (imgs.length + 1))})`; };
+  imgs.forEach(im => (im.complete ? (done++, step()) : im.addEventListener('load', () => { done++; step(); }, { once: true })));
+  let raf;
+  const tick = now => {
+    const s = (now - t0) / 1000;
+    clock.textContent = `00:${String(Math.floor(s)).padStart(2, '0')}.${Math.floor((s % 1) * 10)}`;
+    raf = requestAnimationFrame(tick);
+  };
+  raf = requestAnimationFrame(tick);
+  const finish = () => {
+    bar.style.transform = 'scaleX(1)';
+    setTimeout(() => { cancelAnimationFrame(raf); document.body.classList.add('ready'); document.body.classList.remove('loading'); }, 250);
+  };
+  const minTime = new Promise(r => setTimeout(r, 1100));
+  const loaded = new Promise(r => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
+  const cap = new Promise(r => setTimeout(r, 4000));
+  Promise.race([Promise.all([minTime, loaded]), cap]).then(finish);
+})();
 
 const q = new URLSearchParams(location.search).get('lang');
 setLang(q || store('lang') || 'ro');

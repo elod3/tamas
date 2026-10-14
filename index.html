@@ -9,7 +9,14 @@
 <link rel="preload" href="assets/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading">
+<script>document.body.classList.add('js')</script>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="ld-num">212</div>
+  <div class="ld-clock" id="ld-clock">00:00.0</div>
+  <div class="ld-bar"><i id="ld-bar"></i></div>
+</div>
 
 <div class="demo" data-i18n="demo">Demo · texte și sume provizorii</div>
 
@@ -97,6 +104,43 @@
       <p data-i18n="podSub">Podiumuri, pe rând.</p>
     </div>
     <div class="wall" id="wall"></div>
+  </section>
+
+  <section class="sponsors" id="sponsori">
+    <div class="sp-text">
+      <h2 data-i18n="spTitle">Firma ta, pe tricoul meu</h2>
+      <p class="sp-voice" data-i18n="spHi">Sunt Tamás.</p>
+      <p class="sp-voice" data-i18n="spWhy">Tricoul meu stă pe podium, în poze și în clasamente.</p>
+      <p class="sp-voice" data-i18n="spFree">Locul de pe piept încă e liber.</p>
+
+      <label class="sp-try">
+        <span data-i18n="spType">Scrie numele firmei</span>
+        <input id="sp-name" type="text" maxlength="22" autocomplete="organization" placeholder="Firma ta">
+      </label>
+      <a class="go sp-go" id="sp-go" href="#" data-i18n="spBtn">Vreau locul ăsta</a>
+      <p class="sp-note" data-i18n="spNote">Mâneca stângă e deja a fratelui meu.</p>
+    </div>
+
+    <figure class="jersey" aria-hidden="true">
+      <svg viewBox="0 0 400 430">
+        <defs>
+          <clipPath id="body"><path d="M138 28 Q200 58 262 28 L332 52 L394 138 L334 178 L312 152 L314 404 Q200 424 86 404 L88 152 L66 178 L6 138 L68 52 Z"/></clipPath>
+        </defs>
+        <g clip-path="url(#body)">
+          <rect width="400" height="430" fill="var(--blue)"/>
+          <path d="M88 150 L130 404 L86 404 Z M312 150 L270 404 L314 404 Z" fill="var(--blue-deep)"/>
+          <rect x="0" y="118" width="400" height="10" fill="#fff" opacity=".9"/>
+          <path d="M6 138 L66 178 L74 166 L14 126 Z" fill="var(--red)"/>
+          <path d="M394 138 L334 178 L326 166 L386 126 Z" fill="var(--red)"/>
+        </g>
+        <path d="M138 28 Q200 58 262 28 L332 52 L394 138 L334 178 L312 152 L314 404 Q200 424 86 404 L88 152 L66 178 L6 138 L68 52 Z" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/>
+        <path d="M138 28 Q200 74 262 28" fill="none" stroke="#fff" stroke-width="5"/>
+        <line x1="200" y1="52" x2="200" y2="404" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-dasharray="2 3"/>
+        <rect class="chest-slot" x="112" y="160" width="176" height="74" rx="4"/>
+        <text id="chest" class="chest" x="200" y="210" text-anchor="middle">FIRMA TA</text>
+        <text class="sleeve" x="326" y="92" text-anchor="middle" transform="rotate(54 326 92)" data-i18n="spTaken">REZERVAT</text>
+      </svg>
+    </figure>
   </section>
 
   <section class="again">
