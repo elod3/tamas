@@ -192,9 +192,14 @@ function chest() {
   const label = v || T[lang].spPh.toUpperCase();
   chestEl.textContent = label;
   // shrink the name until it fits across the chest (max 220 of the 400-unit jersey)
-  chestEl.setAttribute('font-size', 46);
-  const w = chestEl.getComputedTextLength ? chestEl.getComputedTextLength() : 0;
-  if (w > 220) chestEl.setAttribute('font-size', (46 * 220 / w).toFixed(1));
+  let fs = 46;
+  chestEl.setAttribute('font-size', fs);
+  for (let k = 0; k < 3; k++) {
+    const w = chestEl.getBBox().width;
+    if (w <= 200) break;
+    fs = fs * 200 / w;
+    chestEl.setAttribute('font-size', fs.toFixed(1));
+  }
   jersey.classList.toggle('filled', !!v);
   const mail = CONFIG.sponsorEmail;
   const subj = encodeURIComponent(T[lang].spMail + (v ? ` · ${spName.value.trim()}` : ''));
