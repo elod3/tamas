@@ -277,7 +277,10 @@ img { display: block; max-width: 100%; height: auto; }
   display: grid; place-content: center; justify-items: center; gap: 6px;
   background: var(--blue); color: #fff;
   transition: transform .8s cubic-bezier(.7, 0, .2, 1);
+  /* safety net: if the script never runs, the gate still opens */
+  animation: ld-out 0s 5s forwards;
 }
+@keyframes ld-out { to { visibility: hidden; } }
 body:not(.js) .loader, .no-loader .loader { display: none; }
 body.ready .loader { transform: translateY(-101%); }
 .ld-num { font-weight: 900; font-stretch: 62%; font-size: clamp(90px, 14vw, 160px); line-height: .85; }
@@ -292,6 +295,11 @@ body.ready .loader { transform: translateY(-101%); }
 }
 .js .bib { transform: translateY(30px) rotate(var(--tilt)); }
 .ready .name span, .ready .cat, .ready .lede, .ready .ask { opacity: 1; transform: none; }
+@keyframes show { to { opacity: 1; transform: none; } }
+.js .name span, .js .cat, .js .lede, .js .ask, .js .rv { animation: show 0s 5.2s forwards; }
+.js .bib { animation: show-bib 0s 5.2s forwards; }
+@keyframes show-bib { to { opacity: 1; transform: rotate(var(--tilt)); } }
+.ready .name span, .ready .cat, .ready .lede, .ready .ask, .ready .bib, .ready .rv { animation: none; }
 .ready .bib { opacity: 1; transform: rotate(var(--tilt)); }
 .ready .cat { transition-delay: .35s; }
 .ready .name span:nth-child(1) { transition-delay: .45s; }
