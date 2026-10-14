@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tamás Koréh · ciclism U15</title>
+<meta name="description" content="Tamás pedalează serios de cinci ani: șosea, MTB, pistă. Ajută-l să ajungă la următoarea linie de start.">
+<meta name="robots" content="noindex">
+<link rel="preload" href="assets/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="demo" data-i18n="demo">Demo · texte și sume provizorii</div>
+
+<header class="top">
+  <span class="mark">TK<b>212</b></span>
+  <nav class="langs" aria-label="Limba">
+    <button data-lang="ro" aria-pressed="true">RO</button>
+    <button data-lang="hu" aria-pressed="false">HU</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="cat" data-i18n="cat">U15 · șosea · MTB · pistă</p>
+      <h1 class="name"><span data-i18n="first">Tamás</span> <span data-i18n="last">Koréh</span></h1>
+      <p class="lede" data-i18n="lede">Pedalează serios de cinci ani. În decembrie a concurat pe velodrom, în Bulgaria.</p>
+      <p class="ask" data-i18n="ask">Ajută-l să ajungă la următoarea linie de start.</p>
+    </div>
+
+    <figure class="hero-photo">
+      <picture>
+        <source media="(max-width: 760px)" srcset="assets/img/hero-m.webp">
+        <img src="assets/img/hero.webp" width="1235" height="1600" alt="Tamás înainte de start, cu casca pe cap" data-i18n-alt="heroAlt">
+      </picture>
+    </figure>
+
+    <form class="bib" id="bib" aria-labelledby="bib-title">
+      <svg class="pin p1" viewBox="0 0 60 14" aria-hidden="true"><use href="#pin"/></svg>
+      <svg class="pin p2" viewBox="0 0 60 14" aria-hidden="true"><use href="#pin"/></svg>
+      <svg class="pin p3" viewBox="0 0 60 14" aria-hidden="true"><use href="#pin"/></svg>
+      <svg class="pin p4" viewBox="0 0 60 14" aria-hidden="true"><use href="#pin"/></svg>
+
+      <div class="bib-band">
+        <span id="bib-title" data-i18n="season">Sezonul 2027</span>
+        <span>U15</span>
+      </div>
+      <div class="bib-num" aria-hidden="true">212</div>
+
+      <fieldset class="amounts">
+        <legend class="sr" data-i18n="pick">Alege suma</legend>
+        <label><input type="radio" name="amt" value="50"><span>50</span></label>
+        <label><input type="radio" name="amt" value="100" checked><span>100</span></label>
+        <label><input type="radio" name="amt" value="250"><span>250</span></label>
+        <label><input type="radio" name="amt" value="500"><span>500</span></label>
+      </fieldset>
+      <p class="buys" id="buys" aria-live="polite">= plinul până la cursă</p>
+
+      <label class="other">
+        <span data-i18n="other">Altă sumă</span>
+        <input type="number" id="other" min="10" step="10" inputmode="numeric" placeholder="lei">
+      </label>
+
+      <button type="submit" class="go" id="go">Donează 100 lei</button>
+
+      <details class="bank">
+        <summary data-i18n="bank">Sau prin transfer bancar</summary>
+        <dl id="bank-data"></dl>
+      </details>
+
+      <p class="sponsor"><a id="sponsor-link" href="#" data-i18n="sponsor">Firma ta poate sta aici, pe tricou</a></p>
+    </form>
+  </section>
+
+  <section class="kinds">
+    <h2 data-i18n="kindsTitle">Face de toate</h2>
+    <figure class="k road">
+      <img src="assets/img/road.webp" width="1600" height="1068" loading="lazy" alt="Pluton la o cursă de șosea" data-i18n-alt="roadAlt">
+      <figcaption><b>01</b> <span data-i18n="road">Șosea</span></figcaption>
+    </figure>
+    <figure class="k mtb">
+      <img src="assets/img/mtb.webp" width="1080" height="718" loading="lazy" alt="Coborâre pe pământ la o cursă de MTB" data-i18n-alt="mtbAlt">
+      <figcaption><b>02</b> <span data-i18n="mtb">Munte · MTB</span></figcaption>
+    </figure>
+    <figure class="k track">
+      <img src="assets/img/track.webp" width="800" height="1200" loading="lazy" alt="Tamás în tricoul albastru, pe bicicleta de cursă" data-i18n-alt="trackAlt">
+      <figcaption><b>03</b> <span data-i18n="track">Pistă</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="podiums">
+    <div class="pod-head">
+      <h2 data-i18n="podTitle">Din telefonul lui tata</h2>
+      <p data-i18n="podSub">Podiumuri, pe rând.</p>
+    </div>
+    <div class="wall" id="wall"></div>
+  </section>
+
+  <section class="again">
+    <p class="again-line" data-i18n="again">Fiecare cursă începe cu o taxă de înscriere și un drum.</p>
+    <a class="go go-line" href="#bib" data-i18n="againBtn">Pune-l la start</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <p data-i18n="made">Pagină făcută de fratele lui.</p>
+  <p data-i18n="credit">Fotografii de curse: Linia20 și familia.</p>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pin" viewBox="0 0 60 14">
+    <path d="M7 7 H52 a5 5 0 0 0 0 -0.01" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M7 3.2 H50 a3.8 3.8 0 0 1 0 7.6 H12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <rect x="1" y="2" width="10" height="10" rx="2.5" fill="currentColor"/>
+    <circle cx="50" cy="7" r="1.4" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<script src="app.js"></script>
+</body>
+</html>
